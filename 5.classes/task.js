@@ -96,7 +96,7 @@ class Library {
         let bookFinded = this.books[i];
         this.books.splice(bookFinded);
         return bookFinded;
-      } else if (this.books.length === 0) {
+      } else {
           return null;
         }
     }
