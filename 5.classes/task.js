@@ -97,7 +97,7 @@ class Library {
         this.books.splice(bookFinded);
         return bookFinded;
       } else if (this.books.length === 0) {
-          return;
+          return null;
         }
     }
   }
