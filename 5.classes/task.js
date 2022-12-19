@@ -81,13 +81,13 @@ class Library {
   }
   
   findBookBy(type, value) {
-    for (let i = 1; i < this.books.length; i++) {
+    for (let i = 0; i < this.books.length; i++) {
       if (this.books[i][type] === value) {
         return this.books[i];
-      } else {
-          return null;
-        }
+      }         
     }
+
+    return null;
   }
 
   giveBookByName(bookName) {
@@ -96,9 +96,66 @@ class Library {
         let bookFinded = this.books[i];
         this.books.splice(bookFinded);
         return bookFinded;
-      } else {
-          return null;
-        }
+      } 
     }
+
+    return null;
   }
 }
+
+class Student {
+  constructor (name) {
+    this.name = name;
+    this.marks = {}; 
+  }
+
+
+  addMark(mark, subject) {
+    if (mark < 2 || mark > 5) {
+      return;    
+    } else if (!this.marks.hasOwnProperty(subject)) {
+        this.marks[subject] = [];
+      }
+
+    this.marks[subject].push(mark);
+  }   
+
+      
+  getAverageBySubject(subject) {
+    if (!this.marks.hasOwnProperty(subject)) {
+      return 0;
+    }
+    
+    let result = this.marks[subject].reduce((acc, item, index, arr)=> {
+      acc += item;
+      if (index === arr.length - 1) {
+        return acc / arr.length;
+      }
+      return acc;
+    }, 0)
+
+    return result; 
+  }
+
+  getAverage() {
+    let subjectInMarks = (Object.keys(this.marks));
+    let result = 0;
+
+    for (let i = 0; i < subjectInMarks.length; i++) {
+      if (subjectInMarks.length === 0) {
+        return 0;
+      }
+      result += this.getAverageBySubject(subjectInMarks[i]);
+      }
+    
+    if (subjectInMarks.length === 0) {
+      return 0;
+    }  
+    
+    return result / subjectInMarks.length;
+  }
+}
+
+
+
+
