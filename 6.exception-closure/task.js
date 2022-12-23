@@ -1,19 +1,16 @@
 ﻿function parseCount(value) {
   if (Number.isNaN(Number.parseFloat(value))) {
-    const error = new Error('Невалидное значение'); 
-    throw error; 
+    throw new Error('Невалидное значение'); 
   } 
   return Number.parseFloat(value);  
 }
 
 function validateCount(value) {
   try {
-    parseCount(value)
+    return parseCount(value)
   } catch(error) {
     return error;
   }
-  
-  return parseCount(value);
 }
 
 class Triangle {
